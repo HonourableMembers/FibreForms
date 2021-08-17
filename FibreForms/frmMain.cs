@@ -56,7 +56,7 @@ namespace FibreForms
             lstHomes.Items.Clear();
             for (int i = 0; i < h.ListSize; i++)
             {
-                lstHomes.Items.Add(" - " + h.stringList()[i]);
+                lstHomes.Items.Add("> " + h.idList()[i]);
             }
         }
 
@@ -69,15 +69,17 @@ namespace FibreForms
         {
             if (lstHomes.SelectedIndex > -1)
             {
-                Home tempHome = h.getHome(index);
+                int homeIndex = lstHomes.SelectedIndex;
 
-                edtOwnerID.Text = tempHome.ID;
-                edtAddress.Text = tempHome.Address;
-                edtOwnerName.Text = tempHome.Owner;
-                edtFibreProv.Text = tempHome.FibreProvider;
-                cbxCovered.Checked = tempHome.IsCovered;
-                edtSpeed.Text = tempHome.Speed.ToString();
-                edtISP.Text = tempHome.Isp;
+                Home temp = h.getHome(homeIndex);
+
+                edtOwnerID.Text = temp.ID;
+                edtAddress.Text = temp.Address;
+                edtOwnerName.Text = temp.Owner;
+                edtFibreProv.Text = temp.FibreProvider;
+                cbxCovered.Checked = temp.IsCovered;
+                edtSpeed.Text = temp.Speed.ToString();
+                edtISP.Text = temp.Isp;
             }
         }
 
@@ -104,24 +106,25 @@ namespace FibreForms
         {
             if (validFields())
             {
-                if (h.search(h.getHome(h.searchIndex).ID) != null)
+                var id = edtOwnerID.Text;
+                var address = edtAddress.Text;
+                var ownerName = edtOwnerName.Text;
+                var fibreProv = edtFibreProv.Text;
+                bool isCovered = cbxCovered.Checked;
+                int speed = Convert.ToInt32(edtSpeed.Text);
+                var isp = edtISP.Text;
+
+                Home temp = new Home(id, address, ownerName, fibreProv, isCovered, speed, isp);
+                int homeIndex = h.getIndex(temp);
+
+                if (h.search(temp.ID) != null)
                 {
                     DialogResult dr = MessageBox.Show("You are about to save current Home details!\n" +
                     "Any overwritten data will be lost. Continue?", "Warning", MessageBoxButtons.YesNo);
 
                     if (dr == DialogResult.Yes)
                     {
-                        var id = edtOwnerID.Text;
-                        var address = edtAddress.Text;
-                        var ownerName = edtOwnerName.Text;
-                        var fibreProv = edtFibreProv.Text;
-                        bool isCovered = cbxCovered.Checked;
-                        int speed = Convert.ToInt32(edtSpeed.Text);
-                        var isp = edtISP.Text;
-
-                        Home newHome = new Home(id, address, ownerName, fibreProv, isCovered, speed, isp);
-
-                        h.updateHome(lstHomes.SelectedIndex, newHome);
+                        h.updateHome(homeIndex, temp);
                     }
                 }
                 else
