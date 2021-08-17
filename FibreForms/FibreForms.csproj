@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="FibreLib">
       <HintPath>..\..\FibreLib\FibreLib\bin\Debug\net5.0\FibreLib.dll</HintPath>
     </Reference>

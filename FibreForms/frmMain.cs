@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Windows.Forms;
 using FibreLib;
@@ -212,6 +213,32 @@ namespace FibreForms
             }
 
             return true;
+        }
+
+        private void edtSearch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string id = edtSearch.Text;
+            if (h.validID(id))
+            {
+                Home findHome = h.search(id);
+
+                if (findHome != null)
+                {
+                    int index = h.getIndex(findHome);
+                    MessageBox.Show("Home found! Loaded into text fields.");
+                    lstHomes.SelectedIndex = index;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Invalid ID to search! Please check it and try again.");
+                edtSearch.Focus();
+            }
         }
     }
 }

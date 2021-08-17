@@ -51,8 +51,14 @@ namespace FibreForms
             this.label9 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lstHomes = new System.Windows.Forms.ListBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.edtSearch = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.pnlAddHome.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlAddHome
@@ -84,9 +90,9 @@ namespace FibreForms
             // 
             this.button2.BackColor = System.Drawing.Color.Red;
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(144, 297);
+            this.button2.Location = new System.Drawing.Point(147, 297);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(116, 23);
+            this.button2.Size = new System.Drawing.Size(113, 23);
             this.button2.TabIndex = 10;
             this.button2.Text = "Delete Home";
             this.button2.UseVisualStyleBackColor = false;
@@ -94,9 +100,9 @@ namespace FibreForms
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(144, 268);
+            this.button1.Location = new System.Drawing.Point(147, 268);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(116, 23);
+            this.button1.Size = new System.Drawing.Size(113, 23);
             this.button1.TabIndex = 9;
             this.button1.Text = "Clear Fields";
             this.button1.UseVisualStyleBackColor = true;
@@ -107,7 +113,7 @@ namespace FibreForms
             this.btnUpdateHome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnUpdateHome.Location = new System.Drawing.Point(3, 297);
             this.btnUpdateHome.Name = "btnUpdateHome";
-            this.btnUpdateHome.Size = new System.Drawing.Size(116, 23);
+            this.btnUpdateHome.Size = new System.Drawing.Size(113, 23);
             this.btnUpdateHome.TabIndex = 8;
             this.btnUpdateHome.Text = "Update Home";
             this.btnUpdateHome.UseVisualStyleBackColor = false;
@@ -119,8 +125,8 @@ namespace FibreForms
             this.btnAddHome.ForeColor = System.Drawing.Color.Black;
             this.btnAddHome.Location = new System.Drawing.Point(3, 268);
             this.btnAddHome.Name = "btnAddHome";
-            this.btnAddHome.Size = new System.Drawing.Size(116, 23);
-            this.btnAddHome.TabIndex = 7;
+            this.btnAddHome.Size = new System.Drawing.Size(113, 23);
+            this.btnAddHome.TabIndex = 8;
             this.btnAddHome.Text = "Add Home";
             this.btnAddHome.UseVisualStyleBackColor = false;
             this.btnAddHome.Click += new System.EventHandler(this.btnAddHome_Click);
@@ -185,28 +191,28 @@ namespace FibreForms
             this.edtFibreProv.Location = new System.Drawing.Point(3, 178);
             this.edtFibreProv.Name = "edtFibreProv";
             this.edtFibreProv.Size = new System.Drawing.Size(113, 23);
-            this.edtFibreProv.TabIndex = 2;
+            this.edtFibreProv.TabIndex = 4;
             // 
             // edtISP
             // 
             this.edtISP.Location = new System.Drawing.Point(142, 90);
             this.edtISP.Name = "edtISP";
             this.edtISP.Size = new System.Drawing.Size(113, 23);
-            this.edtISP.TabIndex = 2;
+            this.edtISP.TabIndex = 7;
             // 
             // edtOwnerName
             // 
             this.edtOwnerName.Location = new System.Drawing.Point(3, 134);
             this.edtOwnerName.Name = "edtOwnerName";
             this.edtOwnerName.Size = new System.Drawing.Size(113, 23);
-            this.edtOwnerName.TabIndex = 2;
+            this.edtOwnerName.TabIndex = 3;
             // 
             // edtSpeed
             // 
             this.edtSpeed.Location = new System.Drawing.Point(142, 46);
             this.edtSpeed.Name = "edtSpeed";
             this.edtSpeed.Size = new System.Drawing.Size(113, 23);
-            this.edtSpeed.TabIndex = 2;
+            this.edtSpeed.TabIndex = 6;
             // 
             // edtAddress
             // 
@@ -220,7 +226,7 @@ namespace FibreForms
             this.edtOwnerID.Location = new System.Drawing.Point(3, 46);
             this.edtOwnerID.Name = "edtOwnerID";
             this.edtOwnerID.Size = new System.Drawing.Size(113, 23);
-            this.edtOwnerID.TabIndex = 2;
+            this.edtOwnerID.TabIndex = 1;
             this.edtOwnerID.TextChanged += new System.EventHandler(this.edtOwnerID_TextChanged);
             // 
             // label1
@@ -258,7 +264,7 @@ namespace FibreForms
             this.panel2.Controls.Add(this.label9);
             this.panel2.Location = new System.Drawing.Point(12, 12);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(235, 330);
+            this.panel2.Size = new System.Drawing.Size(235, 417);
             this.panel2.TabIndex = 4;
             // 
             // lstHomes
@@ -267,15 +273,64 @@ namespace FibreForms
             this.lstHomes.ItemHeight = 15;
             this.lstHomes.Location = new System.Drawing.Point(3, 31);
             this.lstHomes.Name = "lstHomes";
-            this.lstHomes.Size = new System.Drawing.Size(229, 289);
+            this.lstHomes.Size = new System.Drawing.Size(229, 379);
             this.lstHomes.TabIndex = 1;
             this.lstHomes.SelectedIndexChanged += new System.EventHandler(this.lstHomes_SelectedIndexChanged);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnSearch);
+            this.panel1.Controls.Add(this.edtSearch);
+            this.panel1.Controls.Add(this.label8);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Location = new System.Drawing.Point(257, 348);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(263, 81);
+            this.panel1.TabIndex = 5;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(3, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(128, 28);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Home Search";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(4, 32);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(122, 15);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "Enter Home Owner ID";
+            // 
+            // edtSearch
+            // 
+            this.edtSearch.Location = new System.Drawing.Point(3, 51);
+            this.edtSearch.Name = "edtSearch";
+            this.edtSearch.Size = new System.Drawing.Size(113, 23);
+            this.edtSearch.TabIndex = 2;
+            this.edtSearch.TextChanged += new System.EventHandler(this.edtSearch_TextChanged);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(147, 51);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(113, 23);
+            this.btnSearch.TabIndex = 3;
+            this.btnSearch.Text = "Search by ID";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(539, 353);
+            this.ClientSize = new System.Drawing.Size(531, 437);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.pnlAddHome);
             this.Name = "frmMain";
@@ -284,6 +339,8 @@ namespace FibreForms
             this.pnlAddHome.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -312,6 +369,11 @@ namespace FibreForms
         private System.Windows.Forms.Button btnUpdateHome;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.TextBox edtSearch;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
     }
 }
 
