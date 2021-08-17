@@ -20,23 +20,30 @@ namespace FibreForms
 
         private void btnAddHome_Click(object sender, EventArgs e)
         {
-            var id = edtOwnerID.Text;
-            var address = edtAddress.Text;
-            var ownerName = edtOwnerName.Text;
-            var fibreProv = edtFibreProv.Text;
-            bool isCovered = cbxCovered.Checked;
-            int speed = Convert.ToInt32(edtSpeed.Text);
-            var isp = edtISP.Text;
-
-            Home newHome = new Home(id, address, ownerName, fibreProv, isCovered, speed, isp);
-
-            if (h.search(edtOwnerID.Text) == null)
+            if (validFields())
             {
-                h.addHome(id, address, ownerName, fibreProv, isCovered, speed, isp);
+                var id = edtOwnerID.Text;
+                var address = edtAddress.Text;
+                var ownerName = edtOwnerName.Text;
+                var fibreProv = edtFibreProv.Text;
+                bool isCovered = cbxCovered.Checked;
+                int speed = Convert.ToInt32(edtSpeed.Text);
+                var isp = edtISP.Text;
+
+                Home newHome = new Home(id, address, ownerName, fibreProv, isCovered, speed, isp);
+
+                if (h.search(edtOwnerID.Text) == null)
+                {
+                    h.addHome(id, address, ownerName, fibreProv, isCovered, speed, isp);
+                }
+                else
+                {
+                    MessageBox.Show("Home was not added! ID already in use.");
+                }
             }
             else
             {
-                MessageBox.Show("Home was not added! ID already in use.");
+                MessageBox.Show("Some fields are invalid! Please check your fields and retry.");
             }
 
             addOrEdit();
@@ -95,29 +102,36 @@ namespace FibreForms
 
         private void btnUpdateHome_Click(object sender, EventArgs e)
         {
-            if (h.search(h.getHome(lstHomes.SelectedIndex).ID) != null)
+            if (validFields())
             {
-                DialogResult dr = MessageBox.Show("You are about to save current Home details!\n" +
-                "Any overwritten data will be lost. Continue?", "Warning", MessageBoxButtons.YesNo);
-
-                if (dr == DialogResult.Yes)
+                if (h.search(h.getHome(h.searchIndex).ID) != null)
                 {
-                    var id = edtOwnerID.Text;
-                    var address = edtAddress.Text;
-                    var ownerName = edtOwnerName.Text;
-                    var fibreProv = edtFibreProv.Text;
-                    bool isCovered = cbxCovered.Checked;
-                    int speed = Convert.ToInt32(edtSpeed.Text);
-                    var isp = edtISP.Text;
+                    DialogResult dr = MessageBox.Show("You are about to save current Home details!\n" +
+                    "Any overwritten data will be lost. Continue?", "Warning", MessageBoxButtons.YesNo);
 
-                    Home newHome = new Home(id, address, ownerName, fibreProv, isCovered, speed, isp);
+                    if (dr == DialogResult.Yes)
+                    {
+                        var id = edtOwnerID.Text;
+                        var address = edtAddress.Text;
+                        var ownerName = edtOwnerName.Text;
+                        var fibreProv = edtFibreProv.Text;
+                        bool isCovered = cbxCovered.Checked;
+                        int speed = Convert.ToInt32(edtSpeed.Text);
+                        var isp = edtISP.Text;
 
-                    h.updateHome(lstHomes.SelectedIndex, newHome);
+                        Home newHome = new Home(id, address, ownerName, fibreProv, isCovered, speed, isp);
+
+                        h.updateHome(lstHomes.SelectedIndex, newHome);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("This house does not exist! Please add it before updating it's details.");
                 }
             }
             else
             {
-                MessageBox.Show("This house does not exist! Please add it before updating it's details.");
+                MessageBox.Show("Some fields are invalid! Please check your fields and retry.");
             }
 
             h.toTextFile();
@@ -154,6 +168,47 @@ namespace FibreForms
 
             h.toTextFile();
             printHomes();
+        }
+
+        public bool validFields()
+        {
+            if (!h.validID(edtOwnerID.Text))
+            {
+                MessageBox.Show("Invalid ID!");
+                return false;
+            }
+            else if (!h.validAddress(edtAddress.Text))
+            {
+                MessageBox.Show("Invalid Address!");
+                return false;
+            }
+            else if (!h.validName(edtOwnerName.Text))
+            {
+                MessageBox.Show("Invalid Owner Name!");
+                return false;
+            }
+            else if (!h.validProvider(edtFibreProv.Text))
+            {
+                MessageBox.Show("Invalid Fibre Provider!");
+                return false;
+            }
+            else if (!h.validBool(cbxCovered.Checked))
+            {
+                MessageBox.Show("Invalid Checkbox!");
+                return false;
+            }
+            else if (!h.validSpeed(edtSpeed.Text))
+            {
+                MessageBox.Show("Invalid Speed!");
+                return false;
+            }
+            else if (!h.validIsp(edtISP.Text))
+            {
+                MessageBox.Show("Invalid ISP!");
+                return false;
+            }
+
+            return true;
         }
     }
 }
