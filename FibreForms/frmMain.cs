@@ -243,7 +243,7 @@ namespace FibreForms
 
         private void edtSearch_TextChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -269,7 +269,52 @@ namespace FibreForms
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            cmbSort.SelectedIndex = 0;
+        }
 
+        private void cmbSort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string sortBy = "";
+
+            switch (cmbSort.SelectedIndex)
+            {
+                case 1:
+                    sortBy = "ID";
+                    break;
+                case 0:
+                    sortBy = "OwnerName";
+                    break;
+            }
+
+            string sortSql = $"select * from {TBL_Name} order by [{sortBy}] ASC;";
+
+            h.dbToList(conn, TBL_Name, sortSql);
+            printHomes();
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSearch_Click_1(object sender, EventArgs e)
+        {
+            if (h.validID(edtSearch.Text))
+            {
+                string searchSql = $"SELECT * FROM {TBL_Name} WHERE ID={edtSearch.Text};";
+                h.dbToList(conn, TBL_Name, searchSql);
+                printHomes();
+                return;
+            }
+
+            MessageBox.Show("Invalid Search ID!\nSearch ID has to be 13 characters and all numbers!", "Error!");
+        }
+
+        private void btnClearSearch_Click(object sender, EventArgs e)
+        {
+            string searchSql = $"SELECT * FROM {TBL_Name};";
+            h.dbToList(conn, TBL_Name, searchSql);
+            printHomes();
         }
     }
 }
