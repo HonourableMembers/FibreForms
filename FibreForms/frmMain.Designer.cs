@@ -29,6 +29,7 @@ namespace FibreForms
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnlAddHome = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -56,9 +57,11 @@ namespace FibreForms
             this.edtSearch = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.pnlAddHome.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlAddHome
@@ -329,18 +332,20 @@ namespace FibreForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(527, 437);
+            this.ClientSize = new System.Drawing.Size(538, 437);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.pnlAddHome);
             this.Name = "frmMain";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.pnlAddHome.ResumeLayout(false);
             this.pnlAddHome.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -374,6 +379,7 @@ namespace FibreForms
         private System.Windows.Forms.TextBox edtSearch;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.BindingSource bindingSource1;
     }
 }
 
