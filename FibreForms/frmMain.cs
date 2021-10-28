@@ -12,7 +12,7 @@ namespace FibreForms
         Homes h = new Homes();
         SqlConnection conn = null;
 
-        static string SERVER_Name = @"PAUWLAPTOP\SQLEXPRESS";   //SQL Server Name (eg. <LAPTOP NAME>\SLEXPRESS)
+        static string SERVER_Name = @"PAUWLAPTOP\SQLEXPRESS";   //SQL Server Name (eg. <LAPTOP NAME>\SQLEXPRESS)
         static string DB_Name = "Fibre-Homes";  //Database Name (Name of your Database created in SSMS)
         static string TBL_Name = "Homes";   //Name of table within Database you are using. (Created in SSMS)
 
@@ -58,7 +58,7 @@ namespace FibreForms
 
                 if (h.search(edtOwnerID.Text) == null)
                 {
-                    h.addHome(id, address, ownerName, fibreProv, isCovered, speed, isp);
+                    h.addHome(conn, TBL_Name, newHome);
                 }
                 else
                 {
@@ -71,7 +71,7 @@ namespace FibreForms
             }
 
             addOrEdit();
-            h.listToDB(conn, TBL_Name);
+            h.dbToList(conn, TBL_Name);
             printHomes();
         }
 
@@ -148,7 +148,7 @@ namespace FibreForms
 
                     if (dr == DialogResult.Yes)
                     {
-                        h.updateHome(homeIndex, temp);
+                        h.updateHome(conn, TBL_Name, temp);
                     }
                 }
                 else
@@ -157,7 +157,7 @@ namespace FibreForms
                 }
             }
 
-            h.listToDB(conn, TBL_Name);
+            h.dbToList(conn, TBL_Name);
             printHomes();
         }
 
